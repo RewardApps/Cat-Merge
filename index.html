@@ -1,969 +1,3 @@
-ChatGPT Plus
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1(2).png
-2(1).png
-3(1).png
-4(1).png
-5(1).png
-Artboard 1 copy(1).png
-Artboard 1(1).png
-Artboard-1-copy-2(1).png
-using similar theme and font , using html css create homepage of this game for website , homepage must be in simiar theme and give info about game
-
-Thought for 12s
-
-Analyzed
-from pathlib import Path
-import shutil, zipfile, textwrap, os
-
-base = Path("/mnt/data/merge-cats-homepage")
-assets = base / "assets"
-assets.mkdir(parents=True, exist_ok=True)
-
-# Uploaded screenshots available in sandbox
-source_images = [
-    ("/mnt/data/1(2).png", "hero-menu.png"),
-    ("/mnt/data/2(1).png", "level-select.png"),
-    ("/mnt/data/3(1).png", "upgrades.png"),
-    ("/mnt/data/4(1).png", "extra.png"),
-    ("/mnt/data/5(1).png", "shop.png"),
-    ("/mnt/data/Artboard 1 copy(1).png", "win-screen.png"),
-    ("/mnt/data/Artboard 1(1).png", "pause-screen.png"),
-    ("/mnt/data/Artboard-1-copy-2(1).png", "lose-screen.png"),
-]
-
-for src, dest in source_images:
-    p = Path(src)
-    if p.exists():
-        shutil.copy(p, assets / dest)
-
-html = r'''<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Merge Cats Defender - Official Game</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="page-noise"></div>
-
-  <header class="site-header">
-    <a class="brand" href="#">
-      <span class="brand-cat">🐱</span>
-      <span>Merge Cats Defender</span>
-    </a>
-
-    <nav class="nav-links">
-      <a href="#game">Game</a>
-      <a href="#features">Features</a>
-      <a href="#screens">Screens</a>
-      <a href="#play">Play</a>
-    </nav>
-
-    <a class="small-cta" href="#play">Play Now</a>
-  </header>
-
-  <main>
-    <section class="hero" id="game">
-      <div class="hero-bg"></div>
-      <div class="hero-overlay"></div>
-
-      <div class="hero-content">
-        <div class="ribbon mini-ribbon">Cartoon Tower Defense</div>
-
-        <h1>
-          <span>MERGE</span>
-          <strong>CATS</strong>
-          <em>DEFENDER</em>
-        </h1>
-
-        <p>
-          Build your cat squad, merge stronger defenders, unlock funny weapons,
-          and stop the zombie waves before they break through the wall.
-        </p>
-
-        <div class="hero-buttons" id="play">
-          <a class="btn btn-primary" href="#">Tap To Play</a>
-          <a class="btn btn-secondary" href="#screens">View Screens</a>
-        </div>
-
-        <div class="hero-stats">
-          <div><strong>10+</strong><span>Waves</span></div>
-          <div><strong>20+</strong><span>Upgrades</span></div>
-          <div><strong>5</strong><span>Power Ups</span></div>
-        </div>
-      </div>
-
-      <div class="phone-preview">
-        <img src="assets/hero-menu.png" alt="Merge Cats Defender start screen">
-      </div>
-    </section>
-
-    <section class="section intro">
-      <div class="ribbon">About The Game</div>
-
-      <div class="intro-grid">
-        <article class="info-card big">
-          <h2>Merge. Upgrade. Defend.</h2>
-          <p>
-            Merge Cats Defender is a fun 2D defense game with cute cats,
-            silly zombie enemies, road-side battle maps, upgrade cards,
-            daily gifts, gems, shop packs, and satisfying wave-clearing action.
-          </p>
-          <p>
-            Place defenders, earn coins, repair your wall, use extra items like
-            bombs and spikes, and improve your cat army level by level.
-          </p>
-        </article>
-
-        <article class="info-card mission-card">
-          <div class="icon-badge">🎁</div>
-          <h3>Daily Rewards</h3>
-          <p>Collect gifts, gems, and bonuses to power up your defenders faster.</p>
-        </article>
-
-        <article class="info-card mission-card">
-          <div class="icon-badge">🧟</div>
-          <h3>Zombie Waves</h3>
-          <p>Fight funny enemies with pots, hats, big noses, and wild expressions.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section features" id="features">
-      <div class="ribbon">Game Features</div>
-
-      <div class="feature-grid">
-        <article class="feature-card">
-          <span>01</span>
-          <h3>Cat Defenders</h3>
-          <p>Unlock cats with different gear, weapons, helmets, and attack styles.</p>
-        </article>
-
-        <article class="feature-card">
-          <span>02</span>
-          <h3>Upgrade System</h3>
-          <p>Level up your squad using gems and make your cats stronger every stage.</p>
-        </article>
-
-        <article class="feature-card">
-          <span>03</span>
-          <h3>Extra Items</h3>
-          <p>Use TNT, boxing cats, spikes, drums, bombs, and other funny power-ups.</p>
-        </article>
-
-        <article class="feature-card">
-          <span>04</span>
-          <h3>Level Map</h3>
-          <p>Progress through city roads, locked levels, and new battlefield zones.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section battle-strip">
-      <div class="battle-copy">
-        <div class="ribbon small">Battle Mode</div>
-        <h2>Stop the enemies before the wall falls.</h2>
-        <p>
-          Each wave becomes harder. Choose your cats wisely, repair your wall
-          on time, and use special items when the zombies get too close.
-        </p>
-      </div>
-
-      <div class="battle-card win">
-        <span>You Win</span>
-        <strong>+150 Gems</strong>
-      </div>
-
-      <div class="battle-card lose">
-        <span>You Lose</span>
-        <strong>Restart?</strong>
-      </div>
-    </section>
-
-    <section class="section screenshots" id="screens">
-      <div class="ribbon">Screenshots</div>
-
-      <div class="screen-grid">
-        <figure>
-          <img src="assets/level-select.png" alt="Level select screen">
-          <figcaption>Level Select</figcaption>
-        </figure>
-
-        <figure>
-          <img src="assets/upgrades.png" alt="Upgrades screen">
-          <figcaption>Cat Upgrades</figcaption>
-        </figure>
-
-        <figure>
-          <img src="assets/extra.png" alt="Extra items screen">
-          <figcaption>Extra Power Ups</figcaption>
-        </figure>
-
-        <figure>
-          <img src="assets/shop.png" alt="Shop screen">
-          <figcaption>Gem Shop</figcaption>
-        </figure>
-
-        <figure>
-          <img src="assets/win-screen.png" alt="Win result screen">
-          <figcaption>Victory Bonus</figcaption>
-        </figure>
-
-        <figure>
-          <img src="assets/pause-screen.png" alt="Pause screen">
-          <figcaption>Pause Menu</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section class="section store-panel">
-      <div class="ribbon">Ready To Play?</div>
-
-      <h2>Download Merge Cats Defender and protect the city with your cat army.</h2>
-      <p>
-        Fun for casual players, tower defense fans, and anyone who loves cute
-        cats with crazy weapons.
-      </p>
-
-      <div class="store-buttons">
-        <a class="store-btn" href="#">Google Play</a>
-        <a class="store-btn alt" href="#">App Store</a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2026 Merge Cats Defender. All rights reserved.</p>
-  </footer>
-</body>
-</html>
-'''
-
-css = r'''* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-:root {
-  --bg: #20282a;
-  --panel: #6f7d70;
-  --panel-dark: #39423d;
-  --panel-soft: #879383;
-  --yellow: #ffd535;
-  --orange: #ff9d18;
-  --red: #b52a2d;
-  --red-dark: #652d2f;
-  --green: #8bd13b;
-  --cyan: #00b8a8;
-  --cream: #ffe5bf;
-  --brown: #4b2724;
-  --outline: #ffffff;
-  --shadow: rgba(0, 0, 0, 0.35);
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  min-height: 100vh;
-  background:
-    radial-gradient(circle at top left, rgba(255, 213, 53, .16), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(0, 184, 168, .14), transparent 28%),
-    linear-gradient(135deg, #1b2023, #303837 50%, #1d2225);
-  color: var(--cream);
-  font-family: "Baloo 2", system-ui, sans-serif;
-  overflow-x: hidden;
-}
-
-.page-noise {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: .09;
-  background-image:
-    linear-gradient(45deg, rgba(255,255,255,.12) 25%, transparent 25%),
-    linear-gradient(-45deg, rgba(255,255,255,.12) 25%, transparent 25%);
-  background-size: 32px 32px;
-  z-index: -1;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.site-header {
-  width: min(1180px, calc(100% - 32px));
-  margin: 18px auto 0;
-  padding: 14px 18px;
-  border: 4px solid #111;
-  border-radius: 26px;
-  background: rgba(54, 64, 60, .9);
-  box-shadow: 0 10px 0 #111, 0 18px 30px var(--shadow);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  position: sticky;
-  top: 14px;
-  z-index: 20;
-  backdrop-filter: blur(8px);
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: "Luckiest Guy", cursive;
-  color: var(--yellow);
-  text-shadow: 3px 3px 0 var(--brown), -1px -1px 0 white;
-  letter-spacing: 1px;
-  font-size: clamp(1rem, 2vw, 1.35rem);
-}
-
-.brand-cat {
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  background: var(--cyan);
-  border: 3px solid #111;
-  border-radius: 14px;
-  box-shadow: 0 4px 0 #111;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  color: white;
-  font-weight: 800;
-  text-shadow: 2px 2px 0 #222;
-}
-
-.nav-links a:hover {
-  color: var(--yellow);
-}
-
-.small-cta,
-.btn,
-.store-btn {
-  border: 4px solid #fff;
-  box-shadow: 0 6px 0 #222, 0 11px 20px var(--shadow);
-  border-radius: 14px;
-  font-weight: 900;
-  text-transform: uppercase;
-  transition: transform .18s ease, box-shadow .18s ease;
-}
-
-.small-cta {
-  padding: 9px 18px;
-  background: linear-gradient(#ffe45b, #ff9317);
-  color: var(--brown);
-  text-shadow: 1px 1px 0 rgba(255,255,255,.55);
-}
-
-.small-cta:hover,
-.btn:hover,
-.store-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 9px 0 #222, 0 18px 25px var(--shadow);
-}
-
-.hero {
-  width: min(1180px, calc(100% - 32px));
-  min-height: 660px;
-  margin: 48px auto 0;
-  border: 6px solid #050505;
-  border-radius: 44px;
-  box-shadow: 0 18px 0 #000, 0 36px 60px rgba(0,0,0,.4);
-  position: relative;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1.05fr .95fr;
-  align-items: center;
-  padding: clamp(26px, 5vw, 64px);
-}
-
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background: url("assets/hero-menu.png") center/cover no-repeat;
-  filter: blur(1px) saturate(.95);
-  transform: scale(1.03);
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(30, 37, 38, .96) 0%, rgba(43, 50, 49, .88) 47%, rgba(43, 50, 49, .52) 100%),
-    radial-gradient(circle at 70% 35%, rgba(255, 213, 53, .22), transparent 24%);
-}
-
-.hero-content,
-.phone-preview {
-  position: relative;
-  z-index: 2;
-}
-
-.mini-ribbon {
-  width: max-content;
-  margin-bottom: 18px;
-}
-
-.ribbon {
-  width: max-content;
-  min-width: 230px;
-  margin: 0 auto 34px;
-  padding: 14px 35px;
-  color: #fff;
-  background: linear-gradient(#c73438, #9d2025);
-  border-radius: 10px 10px 5px 5px;
-  border: 4px solid rgba(0,0,0,.28);
-  box-shadow: 0 7px 0 var(--red-dark), 0 13px 20px rgba(0,0,0,.25);
-  text-align: center;
-  font-family: "Luckiest Guy", cursive;
-  font-size: clamp(1.1rem, 2.4vw, 1.75rem);
-  letter-spacing: 1px;
-  text-shadow: 3px 3px 0 var(--brown), -1px -1px 0 rgba(255,255,255,.65);
-  position: relative;
-}
-
-.ribbon::before,
-.ribbon::after {
-  content: "";
-  position: absolute;
-  bottom: -8px;
-  width: 46px;
-  height: 34px;
-  background: #7f2527;
-  z-index: -1;
-}
-
-.ribbon::before {
-  left: -30px;
-  transform: skewY(18deg);
-}
-
-.ribbon::after {
-  right: -30px;
-  transform: skewY(-18deg);
-}
-
-.ribbon.small {
-  min-width: 180px;
-  margin: 0 0 18px;
-  font-size: 1.2rem;
-}
-
-.hero h1 {
-  font-family: "Luckiest Guy", cursive;
-  line-height: .86;
-  letter-spacing: 2px;
-  color: var(--yellow);
-  text-shadow:
-    5px 5px 0 #5a1d13,
-    -4px -4px 0 #fff,
-    0 9px 0 #1b0d0b,
-    0 18px 20px rgba(0,0,0,.35);
-}
-
-.hero h1 span {
-  display: block;
-  font-size: clamp(2.5rem, 6vw, 5.2rem);
-}
-
-.hero h1 strong {
-  display: block;
-  font-size: clamp(4.2rem, 11vw, 9.2rem);
-  color: #ffdd22;
-}
-
-.hero h1 em {
-  display: block;
-  font-size: clamp(2.2rem, 5.5vw, 4.7rem);
-  font-style: normal;
-}
-
-.hero p {
-  max-width: 560px;
-  margin: 28px 0 26px;
-  color: #fff;
-  font-size: clamp(1.05rem, 2vw, 1.35rem);
-  line-height: 1.35;
-  text-shadow: 2px 2px 0 #111;
-}
-
-.hero-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.btn {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 172px;
-  padding: 15px 24px;
-  font-size: 1.15rem;
-  color: #fff;
-  text-shadow: 2px 2px 0 #5b2a2d;
-}
-
-.btn-primary {
-  background: linear-gradient(#a8e64b, #70bd24);
-}
-
-.btn-secondary {
-  background: linear-gradient(#ffc85b, #fb8f19);
-}
-
-.hero-stats {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-top: 34px;
-}
-
-.hero-stats div {
-  min-width: 118px;
-  padding: 14px 18px 11px;
-  background: rgba(0,0,0,.38);
-  border: 3px solid rgba(255,255,255,.35);
-  border-radius: 18px;
-  box-shadow: inset 0 -5px 0 rgba(0,0,0,.18);
-  text-align: center;
-}
-
-.hero-stats strong {
-  display: block;
-  color: var(--yellow);
-  font-family: "Luckiest Guy", cursive;
-  font-size: 1.9rem;
-  text-shadow: 2px 2px 0 #391d1d;
-}
-
-.hero-stats span {
-  color: #fff;
-  font-weight: 900;
-}
-
-.phone-preview {
-  transform: rotate(2deg);
-}
-
-.phone-preview img {
-  width: 100%;
-  border-radius: 34px;
-  border: 5px solid #111;
-  box-shadow: 0 16px 0 #000, 0 26px 35px rgba(0,0,0,.35);
-}
-
-.section {
-  width: min(1180px, calc(100% - 32px));
-  margin: 94px auto 0;
-}
-
-.intro-grid {
-  display: grid;
-  grid-template-columns: 1.35fr .8fr .8fr;
-  gap: 22px;
-}
-
-.info-card,
-.feature-card,
-.store-panel {
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,0)),
-    var(--panel);
-  border: 5px solid rgba(255,255,255,.35);
-  border-radius: 24px;
-  box-shadow: 0 10px 0 rgba(0,0,0,.35), 0 20px 35px rgba(0,0,0,.25);
-  position: relative;
-  overflow: hidden;
-}
-
-.info-card::after,
-.feature-card::after,
-.store-panel::after {
-  content: "";
-  position: absolute;
-  right: 18px;
-  bottom: 16px;
-  width: 70px;
-  height: 34px;
-  opacity: .24;
-  background:
-    linear-gradient(135deg, transparent 45%, rgba(255,255,255,.75) 46%, transparent 49%),
-    linear-gradient(45deg, transparent 43%, rgba(255,255,255,.75) 45%, transparent 49%);
-}
-
-.info-card {
-  padding: 30px;
-}
-
-.info-card h2,
-.battle-copy h2,
-.store-panel h2 {
-  font-family: "Luckiest Guy", cursive;
-  color: var(--yellow);
-  font-size: clamp(2rem, 4vw, 3.6rem);
-  letter-spacing: 1px;
-  line-height: .95;
-  text-shadow: 3px 3px 0 var(--brown), -1px -1px 0 #fff;
-  margin-bottom: 18px;
-}
-
-.info-card h3,
-.feature-card h3 {
-  color: #fff;
-  font-family: "Luckiest Guy", cursive;
-  font-size: 1.55rem;
-  text-shadow: 3px 3px 0 var(--brown);
-  margin-bottom: 8px;
-}
-
-.info-card p,
-.feature-card p,
-.battle-copy p,
-.store-panel p {
-  color: #f7f1dc;
-  font-size: 1.08rem;
-  line-height: 1.45;
-  text-shadow: 1px 1px 0 rgba(0,0,0,.3);
-}
-
-.icon-badge {
-  width: 72px;
-  height: 72px;
-  display: grid;
-  place-items: center;
-  margin-bottom: 20px;
-  border-radius: 20px;
-  border: 4px solid #111;
-  background: linear-gradient(#00d1bd, #008d83);
-  box-shadow: 0 6px 0 #111;
-  font-size: 2rem;
-}
-
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
-}
-
-.feature-card {
-  padding: 26px 24px;
-  min-height: 245px;
-}
-
-.feature-card span {
-  display: inline-grid;
-  place-items: center;
-  width: 58px;
-  height: 58px;
-  margin-bottom: 18px;
-  border-radius: 16px;
-  background: linear-gradient(#ffe45b, #ff9c19);
-  color: #6a2d25;
-  border: 4px solid #fff;
-  box-shadow: 0 5px 0 #222;
-  font-family: "Luckiest Guy", cursive;
-  font-size: 1.3rem;
-}
-
-.battle-strip {
-  background:
-    linear-gradient(90deg, rgba(0,0,0,.38), rgba(0,0,0,.12)),
-    url("assets/win-screen.png") center/cover no-repeat;
-  border: 6px solid #050505;
-  border-radius: 36px;
-  box-shadow: 0 14px 0 #000, 0 28px 50px rgba(0,0,0,.35);
-  padding: 52px;
-  min-height: 420px;
-  display: grid;
-  grid-template-columns: 1.2fr .7fr .7fr;
-  align-items: center;
-  gap: 22px;
-  position: relative;
-  overflow: hidden;
-}
-
-.battle-strip::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(16, 18, 20, .46);
-}
-
-.battle-copy,
-.battle-card {
-  position: relative;
-  z-index: 1;
-}
-
-.battle-card {
-  min-height: 190px;
-  border-radius: 24px;
-  border: 5px solid rgba(255,255,255,.6);
-  box-shadow: 0 10px 0 #222;
-  padding: 26px;
-  display: grid;
-  align-content: center;
-  text-align: center;
-}
-
-.battle-card span {
-  font-family: "Luckiest Guy", cursive;
-  font-size: 2rem;
-  color: #fff;
-  text-shadow: 3px 3px 0 var(--brown);
-}
-
-.battle-card strong {
-  margin-top: 12px;
-  font-size: 1.3rem;
-  color: var(--yellow);
-  text-shadow: 2px 2px 0 #111;
-}
-
-.battle-card.win {
-  background: linear-gradient(#ffbd43, #a27646);
-}
-
-.battle-card.lose {
-  background: linear-gradient(#8c4748, #5b282b);
-}
-
-.screen-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-
-.screen-grid figure {
-  background: var(--panel-dark);
-  border: 5px solid #111;
-  border-radius: 28px;
-  box-shadow: 0 11px 0 #000, 0 22px 34px rgba(0,0,0,.3);
-  overflow: hidden;
-}
-
-.screen-grid img {
-  width: 100%;
-  display: block;
-  aspect-ratio: 16 / 8.8;
-  object-fit: cover;
-}
-
-.screen-grid figcaption {
-  padding: 16px 20px;
-  background: linear-gradient(#c33136, #982026);
-  color: white;
-  font-family: "Luckiest Guy", cursive;
-  font-size: 1.35rem;
-  text-shadow: 3px 3px 0 var(--brown);
-  border-top: 4px solid rgba(255,255,255,.25);
-}
-
-.store-panel {
-  padding: 54px 28px 62px;
-  text-align: center;
-  margin-bottom: 70px;
-}
-
-.store-panel h2 {
-  max-width: 850px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.store-panel p {
-  max-width: 620px;
-  margin: 0 auto 28px;
-}
-
-.store-buttons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 18px;
-}
-
-.store-btn {
-  display: inline-flex;
-  min-width: 190px;
-  justify-content: center;
-  padding: 16px 24px;
-  color: var(--brown);
-  background: linear-gradient(#ffe45b, #ff9b17);
-  font-family: "Luckiest Guy", cursive;
-  font-size: 1.2rem;
-  letter-spacing: 1px;
-}
-
-.store-btn.alt {
-  color: #fff;
-  background: linear-gradient(#00cbbd, #008e84);
-  text-shadow: 2px 2px 0 #164441;
-}
-
-footer {
-  padding: 30px 16px 40px;
-  text-align: center;
-  color: rgba(255,255,255,.7);
-  font-weight: 800;
-}
-
-@media (max-width: 980px) {
-  .site-header {
-    flex-wrap: wrap;
-  }
-
-  .nav-links {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-  }
-
-  .hero {
-    grid-template-columns: 1fr;
-    gap: 34px;
-  }
-
-  .phone-preview {
-    transform: rotate(0);
-  }
-
-  .intro-grid,
-  .feature-grid,
-  .battle-strip {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .info-card.big,
-  .battle-copy {
-    grid-column: 1 / -1;
-  }
-}
-
-@media (max-width: 680px) {
-  .site-header,
-  .hero,
-  .section {
-    width: min(100% - 20px, 1180px);
-  }
-
-  .nav-links {
-    gap: 12px;
-    font-size: .95rem;
-  }
-
-  .small-cta {
-    display: none;
-  }
-
-  .hero {
-    min-height: auto;
-    padding: 26px 18px 34px;
-    border-radius: 30px;
-  }
-
-  .hero h1 strong {
-    font-size: clamp(3.4rem, 18vw, 5.4rem);
-  }
-
-  .intro-grid,
-  .feature-grid,
-  .battle-strip,
-  .screen-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .battle-strip {
-    padding: 32px 20px;
-  }
-
-  .ribbon {
-    min-width: 190px;
-    padding-inline: 22px;
-  }
-}
-'''
-
-(base / "index.html").write_text(html, encoding="utf-8")
-(base / "style.css").write_text(css, encoding="utf-8")
-
-zip_path = Path("/mnt/data/merge-cats-homepage.zip")
-if zip_path.exists():
-    zip_path.unlink()
-
-with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
-    for file in base.rglob("*"):
-        z.write(file, file.relative_to(base.parent))
-
-print(f"Created: {zip_path}")
-print(f"Preview HTML: {base / 'index.html'}")
-STDOUT/STDERR
-Created: /mnt/data/merge-cats-homepage.zip
-Preview HTML: /mnt/data/merge-cats-homepage/index.html
-Created a complete responsive HTML + CSS homepage using the same cartoon game theme, ribbon headings, yellow/orange title style, green buttons, dark panels, and your uploaded screenshots.
-
-Download files here:
-
-Download homepage ZIP
-
-Open this file after extracting:
-
-merge-cats-homepage/index.html
-
-It includes:
-
-Hero section with “Merge Cats Defender”
-
-Game info section
-
-Features section
-
-Battle/win/lose style section
-
-Screenshots gallery
-
-Play/download call-to-action buttons 
-
-
-just give simple html css only , no needed to put assets , just match theme similar to game
-
-Thought for 7s
-Save this as index.html and open in browser.
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -978,33 +12,41 @@ Save this as index.html and open in browser.
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: Impact, "Arial Black", sans-serif;
-      background: #222b2d;
+      background: #20282a;
       color: #fff;
       overflow-x: hidden;
     }
 
     .page {
       min-height: 100vh;
+      padding: 24px;
       background:
-        radial-gradient(circle at top left, rgba(255, 201, 39, 0.18), transparent 30%),
-        radial-gradient(circle at bottom right, rgba(0, 190, 170, 0.18), transparent 30%),
+        radial-gradient(circle at top left, rgba(255, 213, 41, 0.2), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(0, 184, 168, 0.18), transparent 30%),
         linear-gradient(135deg, #1f2729, #59655c);
-      padding: 25px;
     }
 
     header {
       max-width: 1150px;
       margin: auto;
+      padding: 16px 24px;
       background: #303b3d;
       border: 5px solid #000;
-      border-radius: 25px;
-      box-shadow: 0 8px 0 #000;
-      padding: 18px 25px;
+      border-radius: 26px;
+      box-shadow: 0 8px 0 #000, 0 18px 35px rgba(0,0,0,0.35);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 20px;
+      position: sticky;
+      top: 15px;
+      z-index: 99;
     }
 
     .logo {
@@ -1016,11 +58,17 @@ Save this as index.html and open in browser.
         -2px -2px 0 #fff;
     }
 
+    nav {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
     nav a {
-      color: white;
+      color: #fff;
       text-decoration: none;
-      margin-left: 25px;
-      font-size: 18px;
+      font-size: 17px;
       text-shadow: 2px 2px 0 #000;
     }
 
@@ -1032,9 +80,10 @@ Save this as index.html and open in browser.
       max-width: 1150px;
       margin: 55px auto;
       min-height: 560px;
+      padding: 70px 45px;
       border: 7px solid #000;
       border-radius: 45px;
-      box-shadow: 0 18px 0 #000;
+      box-shadow: 0 18px 0 #000, 0 35px 55px rgba(0,0,0,0.45);
       background:
         linear-gradient(rgba(30, 38, 40, 0.82), rgba(30, 38, 40, 0.82)),
         repeating-linear-gradient(
@@ -1046,16 +95,15 @@ Save this as index.html and open in browser.
         );
       position: relative;
       overflow: hidden;
-      padding: 70px 45px;
     }
 
     .hero::before {
       content: "";
       position: absolute;
-      left: -60px;
-      bottom: -40px;
-      width: 330px;
-      height: 330px;
+      left: -80px;
+      bottom: -70px;
+      width: 340px;
+      height: 340px;
       background: #00b8a8;
       border: 6px solid #000;
       border-radius: 50%;
@@ -1065,10 +113,10 @@ Save this as index.html and open in browser.
     .hero::after {
       content: "";
       position: absolute;
-      right: -80px;
-      top: -70px;
-      width: 360px;
-      height: 360px;
+      right: -100px;
+      top: -90px;
+      width: 380px;
+      height: 380px;
       background: #b52a2d;
       border: 6px solid #000;
       border-radius: 50%;
@@ -1076,34 +124,35 @@ Save this as index.html and open in browser.
     }
 
     .hero-content {
+      max-width: 680px;
       position: relative;
       z-index: 2;
-      max-width: 650px;
     }
 
     .ribbon {
       display: inline-block;
       background: #b52a2d;
-      color: white;
-      padding: 14px 35px;
+      color: #fff;
+      padding: 14px 34px;
       border-radius: 10px;
-      border: 4px solid rgba(0, 0, 0, 0.35);
+      border: 4px solid rgba(0,0,0,0.35);
       box-shadow: 0 7px 0 #641f22;
-      font-size: 22px;
+      font-size: 23px;
+      letter-spacing: 1px;
       text-shadow: 3px 3px 0 #4b2424;
-      margin-bottom: 25px;
+      margin-bottom: 26px;
     }
 
     h1 {
       line-height: 0.9;
       letter-spacing: 3px;
-      margin-bottom: 25px;
+      margin-bottom: 26px;
     }
 
     h1 span {
       display: block;
       color: #ffd429;
-      font-size: 70px;
+      font-size: 72px;
       text-shadow:
         5px 5px 0 #5a231f,
         -3px -3px 0 #fff,
@@ -1113,7 +162,7 @@ Save this as index.html and open in browser.
     h1 strong {
       display: block;
       color: #ffde22;
-      font-size: 120px;
+      font-size: 122px;
       text-shadow:
         6px 6px 0 #5a231f,
         -4px -4px 0 #fff,
@@ -1131,20 +180,27 @@ Save this as index.html and open in browser.
         0 8px 0 #000;
     }
 
-    .hero p {
+    .hero p,
+    .card p,
+    .battle p,
+    .download p {
       font-family: Arial, sans-serif;
       font-weight: 800;
-      font-size: 21px;
       line-height: 1.5;
       color: #fff3d2;
-      text-shadow: 2px 2px 0 #000;
-      margin-bottom: 30px;
+      text-shadow: 1px 1px 0 #000;
+    }
+
+    .hero p {
+      font-size: 21px;
+      max-width: 620px;
+      margin-bottom: 32px;
     }
 
     .buttons {
       display: flex;
-      gap: 18px;
       flex-wrap: wrap;
+      gap: 18px;
     }
 
     .btn {
@@ -1152,12 +208,12 @@ Save this as index.html and open in browser.
       text-decoration: none;
       padding: 16px 34px;
       border-radius: 14px;
-      border: 4px solid white;
+      border: 4px solid #fff;
       box-shadow: 0 7px 0 #111;
-      color: #4b2424;
       font-size: 22px;
-      text-shadow: 1px 1px 0 white;
-      transition: 0.2s;
+      color: #4b2424;
+      text-shadow: 1px 1px 0 #fff;
+      transition: 0.2s ease;
     }
 
     .btn:hover {
@@ -1165,11 +221,11 @@ Save this as index.html and open in browser.
       box-shadow: 0 11px 0 #111;
     }
 
-    .play {
+    .btn-green {
       background: linear-gradient(#a7ea4b, #73c52c);
     }
 
-    .more {
+    .btn-orange {
       background: linear-gradient(#ffd85a, #ff9d18);
     }
 
@@ -1184,11 +240,11 @@ Save this as index.html and open in browser.
       background: #b52a2d;
       padding: 14px 45px;
       border-radius: 10px;
-      border: 4px solid rgba(0, 0, 0, 0.3);
+      border: 4px solid rgba(0,0,0,0.35);
       box-shadow: 0 7px 0 #641f22;
       font-size: 34px;
       text-shadow: 3px 3px 0 #4b2424;
-      margin-bottom: 40px;
+      margin-bottom: 42px;
     }
 
     .cards {
@@ -1199,10 +255,10 @@ Save this as index.html and open in browser.
 
     .card {
       background: #6f7d70;
-      border: 5px solid rgba(255, 255, 255, 0.45);
+      border: 5px solid rgba(255,255,255,0.45);
       border-radius: 25px;
       padding: 35px 25px;
-      box-shadow: 0 10px 0 rgba(0, 0, 0, 0.45);
+      box-shadow: 0 10px 0 rgba(0,0,0,0.45);
       text-align: left;
       position: relative;
       overflow: hidden;
@@ -1213,15 +269,15 @@ Save this as index.html and open in browser.
       position: absolute;
       width: 90px;
       height: 90px;
-      right: -20px;
-      bottom: -20px;
-      background: rgba(255, 255, 255, 0.14);
+      right: -22px;
+      bottom: -22px;
+      background: rgba(255,255,255,0.14);
       border-radius: 50%;
     }
 
-    .card .icon {
-      width: 70px;
-      height: 70px;
+    .icon {
+      width: 72px;
+      height: 72px;
       background: #00b8a8;
       border: 4px solid #111;
       border-radius: 18px;
@@ -1229,31 +285,30 @@ Save this as index.html and open in browser.
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 34px;
+      font-size: 35px;
       margin-bottom: 20px;
     }
 
     .card h3 {
       color: #ffd429;
-      font-size: 28px;
+      font-size: 29px;
       text-shadow: 3px 3px 0 #4b2424;
       margin-bottom: 12px;
     }
 
     .card p {
-      font-family: Arial, sans-serif;
-      font-weight: 800;
-      color: #fff3d2;
       font-size: 17px;
-      line-height: 1.5;
-      text-shadow: 1px 1px 0 #000;
     }
 
     .battle {
       max-width: 1150px;
       margin: 90px auto;
+      padding: 55px;
+      border: 7px solid #000;
+      border-radius: 35px;
+      box-shadow: 0 14px 0 #000, 0 28px 45px rgba(0,0,0,0.4);
       background:
-        linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
         repeating-linear-gradient(
           90deg,
           #2b3335,
@@ -1261,10 +316,6 @@ Save this as index.html and open in browser.
           #384244 80px,
           #384244 160px
         );
-      border: 7px solid #000;
-      border-radius: 35px;
-      box-shadow: 0 14px 0 #000;
-      padding: 55px;
       display: grid;
       grid-template-columns: 1.4fr 1fr;
       gap: 35px;
@@ -1273,7 +324,7 @@ Save this as index.html and open in browser.
 
     .battle h2 {
       color: #ffd429;
-      font-size: 55px;
+      font-size: 56px;
       line-height: 1;
       text-shadow:
         4px 4px 0 #5a231f,
@@ -1282,20 +333,15 @@ Save this as index.html and open in browser.
     }
 
     .battle p {
-      font-family: Arial, sans-serif;
-      font-weight: 800;
-      color: #fff3d2;
       font-size: 19px;
-      line-height: 1.5;
-      text-shadow: 1px 1px 0 #000;
     }
 
     .win-box {
       background: linear-gradient(#ffbf3f, #9c7046);
-      border: 5px solid white;
+      border: 5px solid #fff;
       border-radius: 25px;
       box-shadow: 0 10px 0 #111;
-      padding: 35px 25px;
+      padding: 36px 25px;
       text-align: center;
     }
 
@@ -1308,23 +354,24 @@ Save this as index.html and open in browser.
     .win-box p {
       color: #ffd429;
       font-size: 24px;
-      margin-top: 15px;
+      margin-top: 12px;
     }
 
     .download {
       max-width: 900px;
-      margin: 90px auto 40px;
+      margin: 90px auto 45px;
       background: #6f7d70;
-      border: 6px solid rgba(255, 255, 255, 0.45);
+      border: 6px solid rgba(255,255,255,0.45);
       border-radius: 30px;
-      box-shadow: 0 12px 0 rgba(0, 0, 0, 0.45);
-      padding: 50px 30px;
+      box-shadow: 0 12px 0 rgba(0,0,0,0.45);
+      padding: 52px 30px;
       text-align: center;
     }
 
     .download h2 {
-      font-size: 48px;
       color: #ffd429;
+      font-size: 50px;
+      line-height: 1;
       text-shadow:
         4px 4px 0 #5a231f,
         -2px -2px 0 #fff;
@@ -1332,42 +379,52 @@ Save this as index.html and open in browser.
     }
 
     .download p {
-      font-family: Arial, sans-serif;
-      font-weight: 800;
-      color: #fff3d2;
       font-size: 19px;
       margin-bottom: 30px;
-      text-shadow: 1px 1px 0 #000;
     }
 
     footer {
       text-align: center;
       padding: 30px;
       font-family: Arial, sans-serif;
-      font-weight: bold;
+      font-weight: 800;
       color: #ddd;
     }
 
-    @media (max-width: 850px) {
+    footer a {
+      color: #ffd429;
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
       header {
         flex-direction: column;
-        gap: 15px;
+        text-align: center;
       }
 
-      nav a {
-        margin: 0 10px;
+      nav {
+        justify-content: center;
+      }
+
+      .hero {
+        padding: 50px 28px;
       }
 
       h1 span {
-        font-size: 48px;
+        font-size: 50px;
       }
 
       h1 strong {
-        font-size: 78px;
+        font-size: 82px;
       }
 
       h1 em {
-        font-size: 42px;
+        font-size: 43px;
       }
 
       .cards {
@@ -1376,11 +433,61 @@ Save this as index.html and open in browser.
 
       .battle {
         grid-template-columns: 1fr;
-        padding: 35px 22px;
+        padding: 38px 24px;
       }
 
       .battle h2 {
+        font-size: 42px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        padding: 12px;
+      }
+
+      .logo {
+        font-size: 25px;
+      }
+
+      nav a {
+        font-size: 15px;
+      }
+
+      .hero {
+        border-radius: 30px;
+        min-height: auto;
+      }
+
+      h1 span {
         font-size: 40px;
+      }
+
+      h1 strong {
+        font-size: 64px;
+      }
+
+      h1 em {
+        font-size: 34px;
+      }
+
+      .ribbon {
+        font-size: 18px;
+        padding: 12px 24px;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .section-title {
+        font-size: 26px;
+        padding: 12px 28px;
+      }
+
+      .download h2 {
+        font-size: 38px;
       }
     }
   </style>
@@ -1396,6 +503,7 @@ Save this as index.html and open in browser.
         <a href="#about">About</a>
         <a href="#features">Features</a>
         <a href="#play">Play</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
       </nav>
     </header>
 
@@ -1410,13 +518,13 @@ Save this as index.html and open in browser.
         </h1>
 
         <p>
-          Build your cat army, merge powerful defenders, upgrade crazy weapons,
-          and protect your wall from funny zombie enemies.
+          Build your cat army, merge powerful defenders, upgrade funny weapons,
+          and protect your wall from silly zombie enemies.
         </p>
 
         <div class="buttons">
-          <a href="#play" class="btn play">Tap To Play</a>
-          <a href="#features" class="btn more">Learn More</a>
+          <a href="#play" class="btn btn-green">Tap To Play</a>
+          <a href="#features" class="btn btn-orange">Learn More</a>
         </div>
       </div>
     </section>
@@ -1462,7 +570,8 @@ Save this as index.html and open in browser.
           <div class="icon">⚔️</div>
           <h3>Merge System</h3>
           <p>
-            Merge cats to make stronger defenders and create a powerful team.
+            Merge cats to make stronger defenders and create a powerful team
+            for every battle.
           </p>
         </div>
 
@@ -1490,7 +599,7 @@ Save this as index.html and open in browser.
         <h2>Defend The Wall</h2>
         <p>
           Place your cats carefully, repair the wall, upgrade your heroes,
-          and survive every zombie wave. Victory gives bonus gems and new progress.
+          and survive every enemy wave. Victory gives bonus gems and new progress.
         </p>
       </div>
 
@@ -1506,387 +615,15 @@ Save this as index.html and open in browser.
         Join the cat defenders and start fighting zombie waves now.
       </p>
 
-      <a href="#" class="btn play">Download Game</a>
+      <a href="#" class="btn btn-green">Download Game</a>
     </section>
 
     <footer>
       © 2026 Merge Cats Defender. All Rights Reserved.
+      <br />
+      <a href="privacy-policy.html">Privacy Policy</a>
     </footer>
 
   </div>
 </body>
 </html>
-
-now give html css for privacy policy page , not our game may contains ad (admob) and even inapp purchases 
-
-Thought for 22s
-Use this as privacy-policy.html. Replace app name, developer name, email, and date. I included AdMob and in-app purchases because Google notes AdMob may collect identifiers such as advertising ID/app set ID, and Google may require consent disclosures for users in the EEA, UK, and Switzerland. 
- Refunds for Google Play purchases depend on Google Play refund policy. 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy - Merge Cats Defender</title>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(255, 213, 41, 0.18), transparent 30%),
-        radial-gradient(circle at bottom right, rgba(0, 184, 168, 0.18), transparent 30%),
-        linear-gradient(135deg, #1f2729, #59655c);
-      color: #fff3d2;
-      line-height: 1.7;
-      padding: 25px;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 30px auto;
-      background: #6f7d70;
-      border: 6px solid #000;
-      border-radius: 35px;
-      box-shadow: 0 14px 0 #000, 0 25px 45px rgba(0,0,0,0.35);
-      overflow: hidden;
-    }
-
-    .hero {
-      background:
-        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
-        repeating-linear-gradient(
-          45deg,
-          #303b3d,
-          #303b3d 35px,
-          #273133 35px,
-          #273133 70px
-        );
-      text-align: center;
-      padding: 55px 25px;
-      border-bottom: 6px solid #000;
-    }
-
-    .ribbon {
-      display: inline-block;
-      background: #b52a2d;
-      color: white;
-      padding: 13px 35px;
-      border-radius: 10px;
-      border: 4px solid rgba(0,0,0,0.35);
-      box-shadow: 0 7px 0 #641f22;
-      font-family: Impact, "Arial Black", sans-serif;
-      font-size: 24px;
-      letter-spacing: 1px;
-      text-shadow: 3px 3px 0 #4b2424;
-      margin-bottom: 25px;
-    }
-
-    h1 {
-      font-family: Impact, "Arial Black", sans-serif;
-      color: #ffd429;
-      font-size: 58px;
-      letter-spacing: 2px;
-      line-height: 1;
-      text-shadow:
-        5px 5px 0 #5a231f,
-        -2px -2px 0 #fff,
-        0 7px 0 #000;
-      margin-bottom: 18px;
-    }
-
-    .subtitle {
-      font-weight: 800;
-      color: #fff;
-      text-shadow: 2px 2px 0 #000;
-      font-size: 18px;
-    }
-
-    .content {
-      padding: 35px;
-    }
-
-    .card {
-      background: #3a4542;
-      border: 4px solid rgba(255,255,255,0.35);
-      border-radius: 22px;
-      padding: 25px;
-      margin-bottom: 25px;
-      box-shadow: 0 8px 0 rgba(0,0,0,0.45);
-    }
-
-    h2 {
-      font-family: Impact, "Arial Black", sans-serif;
-      color: #ffd429;
-      font-size: 30px;
-      letter-spacing: 1px;
-      text-shadow: 3px 3px 0 #4b2424;
-      margin-bottom: 12px;
-    }
-
-    p {
-      font-size: 16px;
-      font-weight: 700;
-      color: #fff3d2;
-      margin-bottom: 12px;
-    }
-
-    ul {
-      padding-left: 22px;
-      margin-top: 10px;
-    }
-
-    li {
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    a {
-      color: #ffd429;
-      font-weight: 900;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .highlight {
-      background: #ffbe26;
-      color: #4b2424;
-      padding: 2px 8px;
-      border-radius: 8px;
-      font-weight: 900;
-    }
-
-    .contact-box {
-      background: linear-gradient(#a7ea4b, #73c52c);
-      color: #4b2424;
-      border: 4px solid white;
-      border-radius: 18px;
-      padding: 22px;
-      box-shadow: 0 7px 0 #111;
-      text-align: center;
-      margin-top: 30px;
-    }
-
-    .contact-box h2 {
-      color: #4b2424;
-      text-shadow: 1px 1px 0 white;
-    }
-
-    .contact-box p {
-      color: #4b2424;
-      text-shadow: none;
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px;
-      background: #20282a;
-      border-top: 5px solid #000;
-      font-weight: 800;
-      color: #ddd;
-    }
-
-    @media (max-width: 650px) {
-      body {
-        padding: 12px;
-      }
-
-      h1 {
-        font-size: 40px;
-      }
-
-      .content {
-        padding: 22px;
-      }
-
-      .card {
-        padding: 20px;
-      }
-
-      .ribbon {
-        font-size: 20px;
-        padding: 11px 25px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="container">
-
-    <section class="hero">
-      <div class="ribbon">Privacy Policy</div>
-      <h1>MERGE CATS DEFENDER</h1>
-      <p class="subtitle">Last updated: July 2026</p>
-    </section>
-
-    <div class="content">
-
-      <div class="card">
-        <h2>1. Introduction</h2>
-        <p>
-          This Privacy Policy explains how <span class="highlight">Merge Cats Defender</span>
-          collects, uses, and protects information when you use our mobile game.
-        </p>
-        <p>
-          By using our game, you agree to the collection and use of information
-          described in this Privacy Policy.
-        </p>
-      </div>
-
-      <div class="card">
-        <h2>2. Information We Collect</h2>
-        <p>
-          We do not directly ask users to provide personal information such as name,
-          address, phone number, or password.
-        </p>
-        <p>
-          However, our game may use third-party services that automatically collect
-          certain information, such as:
-        </p>
-        <ul>
-          <li>Device information</li>
-          <li>Advertising ID</li>
-          <li>App usage data</li>
-          <li>Crash reports</li>
-          <li>Approximate location based on device or network data</li>
-          <li>Purchase history related to in-app purchases</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h2>3. Advertising</h2>
-        <p>
-          Our game may display advertisements using Google AdMob or other ad networks.
-          These third-party ad providers may collect and use information to show
-          personalized or non-personalized ads.
-        </p>
-        <p>
-          Ad providers may use advertising identifiers, cookies, or similar technologies
-          to understand ad performance and prevent fraud.
-        </p>
-        <p>
-          You can learn more about how Google uses data here:
-          <a href="https://policies.google.com/technologies/ads" target="_blank">
-            Google Advertising Policy
-          </a>
-        </p>
-      </div>
-
-      <div class="card">
-        <h2>4. In-App Purchases</h2>
-        <p>
-          Our game may offer optional in-app purchases, such as gems, coins, packs,
-          upgrades, or other digital items.
-        </p>
-        <p>
-          Payments are processed by the app store platform, such as Google Play or
-          Apple App Store. We do not collect or store your payment card details.
-        </p>
-        <p>
-          Refunds and payment issues are handled according to the payment platform's
-          own policies.
-        </p>
-      </div>
-
-      <div class="card">
-        <h2>5. Third-Party Services</h2>
-        <p>
-          Our game may use third-party services for ads, analytics, crash reporting,
-          and purchases. These services may collect information according to their
-          own privacy policies.
-        </p>
-        <ul>
-          <li>Google AdMob</li>
-          <li>Google Play Billing</li>
-          <li>Google Play Services</li>
-          <li>Firebase Analytics or Crashlytics, if used</li>
-          <li>Apple App Store services, if available on iOS</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h2>6. How We Use Information</h2>
-        <p>Information may be used to:</p>
-        <ul>
-          <li>Show ads inside the game</li>
-          <li>Process in-app purchases</li>
-          <li>Improve game performance</li>
-          <li>Fix bugs and crashes</li>
-          <li>Understand how players use the game</li>
-          <li>Prevent fraud, cheating, or abuse</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h2>7. Children’s Privacy</h2>
-        <p>
-          Our game is not intended to knowingly collect personal information from
-          children under 13. If you believe that a child has provided personal
-          information, please contact us so we can take appropriate action.
-        </p>
-        <p>
-          If the game is targeted to children, parents should review the game,
-          ads, and purchase settings before allowing children to play.
-        </p>
-      </div>
-
-      <div class="card">
-        <h2>8. User Choices</h2>
-        <p>
-          You may control certain privacy choices from your device settings,
-          including ad personalization, app permissions, and purchase restrictions.
-        </p>
-        <p>
-          You may also reset or limit your advertising ID from your device privacy settings.
-        </p>
-      </div>
-
-      <div class="card">
-        <h2>9. Data Security</h2>
-        <p>
-          We use reasonable measures to protect information. However, no method of
-          electronic storage or internet transmission is 100% secure.
-        </p>
-      </div>
-
-      <div class="card">
-        <h2>10. Changes To This Policy</h2>
-        <p>
-          We may update this Privacy Policy from time to time. Any changes will be
-          posted on this page with a new updated date.
-        </p>
-      </div>
-
-      <div class="contact-box">
-        <h2>Contact Us</h2>
-        <p>
-          If you have questions about this Privacy Policy, contact us at:
-        </p>
-        <p>
-          <strong>Developer Name:</strong> Your Developer Name<br>
-          <strong>Email:</strong> your-email@example.com
-        </p>
-      </div>
-
-    </div>
-
-    <footer>
-      © 2026 Merge Cats Defender. All Rights Reserved.
-    </footer>
-
-  </div>
-
-</body>
-</html>
-
